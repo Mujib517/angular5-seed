@@ -1,0 +1,15 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "es5",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "dist/intermediate/",
+        "lib": [
+            "es2015",
+            "es2015.iterable",
+            "dom"
+        ]
+    },
+    "include": "./src/**/*"
+}
