@@ -1,6 +1,16 @@
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const HtmlPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const Environment = require('./environment');
+
+const htmlConfig = new HtmlPlugin({
+    hash: true,
+    path: path.join(__dirname, "dist"),
+    filename: 'index.html',
+    template: 'index.html',
+    inject: 'body'
+});
 
 module.exports = {
     entry: {
@@ -8,7 +18,8 @@ module.exports = {
         vendor: "./src/vendor.ts"
     },
     output: {
-        filename: Environment.isProduction ? "dist/[name].min.js" : "dist/[name].js"
+        path: path.join(__dirname, "dist"),
+        filename: Environment.isProduction ? "[name].min.js" : "[name].js"
     },
     module: {
         loaders: [
@@ -18,6 +29,6 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".js"]
     },
-    plugins: Environment.isProduction ? [new UglifyJsPlugin()] : []
+    plugins: Environment.isProduction ? [new UglifyJsPlugin(), htmlConfig] : [htmlConfig]
 
 }
