@@ -23,11 +23,12 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.ts$/, loader: 'awesome-typescript-loader' }
+            { test: /\.ts$/, loader: 'awesome-typescript-loader' },
+            { test: /\.css$/, loader: 'style-loader!css-loader' }
         ]
     },
     resolve: {
-        extensions: [".ts", ".js"]
+        extensions: [".ts", ".js", ".css"]
     },
     plugins: Environment.isProduction ? [new UglifyJsPlugin(), htmlConfig] : [htmlConfig]
 
