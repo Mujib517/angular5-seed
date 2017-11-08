@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -w",
+    "build": "webpack --display-error-details",
     "dev": "webpack-dev-server",
     "start": "concurrently --kill-others \"npm run build\" \"npm run dev\""
   },
@@ -25,6 +25,7 @@
     "awesome-typescript-loader": "^3.3.0",
     "concurrently": "^3.5.0",
     "typescript": "^2.6.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   }

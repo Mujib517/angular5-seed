@@ -1,10 +1,14 @@
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
+const Environment = require('./environment');
+
 module.exports = {
     entry: {
         app: "./src/main.ts",
         vendor: "./src/vendor.ts"
     },
     output: {
-        filename: "dist/[name].js"
+        filename: Environment.isProduction ? "dist/[name].min.js" : "dist/[name].js"
     },
     module: {
         loaders: [
@@ -13,6 +17,7 @@ module.exports = {
     },
     resolve: {
         extensions: [".ts", ".js"]
-    }
+    },
+    plugins: Environment.isProduction ? [new UglifyJsPlugin()] : []
 
 }
