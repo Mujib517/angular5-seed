@@ -1,9 +1,11 @@
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 
 const Environment = require('./environment');
+const cleanPlugin = new CleanWebpackPlugin(['dist']);
 
 const htmlConfig = new HtmlPlugin({
     hash: true,
@@ -17,7 +19,10 @@ const copyConfig = new CopyPlugin([{ from: 'img', to: "img" }]);
 
 const plugins = [htmlConfig, copyConfig];
 
-if (Environment.isProduction) plugins.push(new UglifyJsPlugin());
+if (Environment.isProduction){
+    plugins.push(cleanPlugin);
+    plugins.push(new UglifyJsPlugin());
+} 
 
 module.exports = {
     entry: {

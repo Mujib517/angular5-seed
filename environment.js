@@ -1,1 +1,1 @@
-module.exports = { isProduction: true }
+module.exports = { isProduction: false }
